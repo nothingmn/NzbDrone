@@ -217,10 +217,6 @@
     <Content Include="Scripts\2010.2.825\telerik.textbox.min.js" />
     <Content Include="Scripts\2010.2.825\telerik.treeview.min.js" />
     <Content Include="Scripts\2010.2.825\telerik.window.min.js" />
-    <Content Include="Scripts\jquery.hoverIntent.min.js" />
-    <Content Include="Scripts\jquery.mb.flipText.js" />
-    <Content Include="Scripts\jquery.metadata.js" />
-    <Content Include="Scripts\mbExtruder.js" />
     <Content Include="Views\Series\Details.aspx" />
     <Content Include="Views\Series\index.aspx" />
     <Content Include="Views\Series\Unmapped.aspx" />
