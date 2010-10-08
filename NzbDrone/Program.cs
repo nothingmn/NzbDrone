@@ -16,7 +16,8 @@ namespace NzbDrone.Console
         {
             CentralDispatch.ConfigureNlog();
             Logger.Info("Starting NZBDrone WebUI");
-            var server = new CassiniDev.Server(@"D:\My Dropbox\Git\NzbDrone\NzbDrone.Web");
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(System.Environment.CurrentDirectory);
+            var server = new CassiniDev.Server(System.IO.Path.Combine(dir.Parent.Parent.Parent.FullName, "NzbDrone.Web"));
             server.Start();
 
             System.Diagnostics.Process.Start(server.RootUrl);

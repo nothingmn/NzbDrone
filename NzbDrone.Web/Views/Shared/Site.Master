@@ -57,9 +57,8 @@ Released   : 20100727
             Design by Free CSS Templates.</p>
     </div>
     <!-- end #footer -->
-    <% Html.Telerik().ScriptRegistrar().Render(); %>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+
+    <% Html.Telerik().ScriptRegistrar().Scripts(c => c.Add("jquery-ui.min.js")).Render(); %>
     
     <asp:ContentPlaceHolder ID="JavascriptContent" runat="server" />
 

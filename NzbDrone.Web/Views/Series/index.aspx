@@ -22,6 +22,7 @@
             setTimeout('MediaDetect();', 1000);
         });
         var Discovered = false;
+        var discoTimeout = 1000;
 
         function MinimizeMediabox() {
             var mb = $("#Mediabox");
@@ -31,22 +32,23 @@
 
         function MediaDetect() {
             $.ajax({
-                url: 'Series/MediaDetect',
+                url: '<%Response.Write( Url.Action("MediaDetect", "MediaControl") ); %>',
                 success: MediaDetectCallback
             });
 
         }
         function MediaDetectCallback(data) {
             Discovered = data.Discovered;
-            if (!Discovered)
-                setTimeout('MediaDetect();', 10000);
-            else
+            if (!Discovered) {
+                if (discoTimeout < 60000)  discoTimeout += 1000;                    
+                setTimeout('MediaDetect();', discoTimeout);
+            } else
                 LightUpMedia(data);
         }
 
         function LightUpMedia(data) {
             $.ajax({
-                url: 'Series/LightUpMedia',
+                url: '<%Response.Write( Url.Action("LightUpMedia", "MediaControl") ); %>',
                 success: LightUpMediaSuccess
             });
         }
@@ -64,7 +66,7 @@
         function MediaBoxClick(args) {
             var cn = args.target.className;
             $.ajax({
-                url: 'Series/ControlMedia',
+                url: '<%Response.Write( Url.Action("ControlMedia", "MediaControl") ); %>',
                 data: "Action=" + cn
             });
         }
@@ -102,7 +104,10 @@
     Series
 </asp:Content>
 <asp:Content ID="Menue" ContentPlaceHolderID="ActionMenue" runat="server">
+
+
     <%
+        
         Html.Telerik().Menu().Name("telerikGrid").Items(items => { items.Add().Text("View Unmapped Folders").Action("Unmapped", "Series"); })
                                                 .Items(items => items.Add().Text("Sync With Disk").Action("Sync", "Series"))
                                                 .Render();

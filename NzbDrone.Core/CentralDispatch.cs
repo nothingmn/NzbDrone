@@ -30,6 +30,7 @@ namespace NzbDrone.Core
             kernel.Bind<ITvDbProvider>().To<TvDbProvider>();
             kernel.Bind<IConfigProvider>().To<ConfigProvider>().InSingletonScope();
             kernel.Bind<INotificationProvider>().To<NotificationProvider>().InSingletonScope();
+            kernel.Bind<IMediaDiscoveryProvider>().To<MediaDiscoveryProvider>().InSingletonScope();
             kernel.Bind<IRepository>().ToMethod(c => new SimpleRepository(provider, SimpleRepositoryOptions.RunMigrations)).InSingletonScope();
 
             ForceMigration(kernel.Get<IRepository>());
