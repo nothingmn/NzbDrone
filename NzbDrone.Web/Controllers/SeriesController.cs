@@ -60,7 +60,7 @@ namespace NzbDrone.Web.Controllers
         {
             Core.Providers.IMediaDiscoveryProvider disco = new Core.Providers.MediaDiscoveryProvider();
             IMediaProvider p = disco.Providers[0];
-            return Json(new { ID = 0, HTML = "<span class='MediaRenderer XBMC'><span class='Play'>Play</span><span class='Pause'>Pause</span><span class='Stop'>Stop</span></span>" }, JsonRequestBehavior.AllowGet);
+            return Json(new { ID = 0, FriendlyName= p.FriendlyName, HTML = "<span class='MediaRenderer XBMC'><span class='Play'>Play</span><span class='Pause'>Pause</span><span class='Stop'>Stop</span></span>" }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult ControlMedia()
         {
