@@ -1,0 +1,56 @@
+﻿.Mediabox 
+{
+	background:black;
+}
+.Play 
+{
+	cursor:pointer;
+	padding:5px;
+
+}
+.Pause 
+{
+	cursor:pointer;
+	padding:5px;
+}
+.Stop 
+{
+	cursor:pointer;
+	padding:5px;
+}
+.flyout-menu-item 
+{
+	display:none;
+	color:white;
+	border:0px solid red;
+	white-space:nowrap;
+	display:inline;
+	bottom:0;
+	width:20px;
+	height:20px;
+	font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:normal;
+	text-shadow: 0px 0px 1px #333;
+
+}
+.flyout 
+{
+	display:none;
+	position:relative;
+	text-align:right;
+	list-style:none;		
+}
+.flyout-tab
+{	
+	display:none;
+	display:inline;	
+	background-color:White;
+	border-bottom-style:dashed;
+	border-bottom-width:thin;
+	position:relative;
+	text-align:right;
+	width:200px;
+	
+	
+}

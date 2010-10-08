@@ -22,6 +22,7 @@ Released   : 20100727
         Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.css").Add("telerik.sitefinity.css")).Render();
     %>
     <link href="../../Content/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="/css/MediaBox.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="/css/start/jquery-ui-1.8.5.custom.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
@@ -61,6 +62,70 @@ Released   : 20100727
     <% Html.Telerik().ScriptRegistrar().Scripts(c => c.Add("jquery-ui.min.js")).Render(); %>
     
     <asp:ContentPlaceHolder ID="JavascriptContent" runat="server" />
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setTimeout('MediaDetect();', 1000);
+            $("#Mediabox").bind("click", MediaBoxClick);
+            $("#flyout").bind("click", flyoutClick);
+        });
+        var Discovered = false;
+        var discoTimeout = 1000;
+
+        function MinimizeMediabox() {
+            var mb = $("#Mediabox");
+            mb.toggle('slow');
+            return false;
+        }
+
+        function MediaDetect() {
+            $.ajax({
+                url: '<%Response.Write( Url.Action("MediaDetect", "MediaControl") ); %>',
+                success: MediaDetectCallback
+            });
+
+        }
+        function MediaDetectCallback(data) {
+            Discovered = data.Discovered;
+            if (!Discovered) {
+                if (discoTimeout < 60000) discoTimeout += 1000;
+                setTimeout('MediaDetect();', discoTimeout);
+            } else
+                LightUpMedia(data);
+        }
+
+        function LightUpMedia(data) {
+            $.ajax({
+                url: '<%Response.Write( Url.Action("LightUpMedia", "MediaControl") ); %>',
+                success: LightUpMediaSuccess
+            });
+        }
+        function flyoutClick() {
+            $("#Mediabox").toggle('fade');
+            return false;
+        }
+        function LightUpMediaSuccess(data) {
+            $("#flyout-menu-item").html(data.FriendlyName);
+            $("#flyout").show('fade');
+            var mb = $("#Mediabox");
+            mb.html(data.HTML).hide();
+        }
+
+        function MediaBoxClick(args) {
+            var cn = args.target.className;
+            $.ajax({
+                url: '<%Response.Write( Url.Action("ControlMedia", "MediaControl") ); %>',
+                data: "Action=" + cn
+            });
+        }
+
+
+    </script>
+    <div id="Mediabox"  class="flyout flyout-tab"></div>
+    <ul id="flyout" class="flyout current_page_item">
+        <li class="active"><a href="#Mediabox" id="flyout-menu-item" class="flyout-menu-item">Media</a></li>
+    </ul>
+
 
 </body>
 </html>
