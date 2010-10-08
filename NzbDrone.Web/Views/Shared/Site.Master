@@ -40,6 +40,10 @@ Released   : 20100727
         <h1>
             <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
         </h1>
+        <div id="MediaBoxContainer" class="Mediabox">
+            <span id="MediaBoxLink"></span> <span id="MediaboxControls"></span>
+        </div>
+
     </div>
     <hr />
     <!-- end #logo -->
@@ -66,14 +70,14 @@ Released   : 20100727
     <script type="text/javascript">
         $(document).ready(function () {
             setTimeout('MediaDetect();', 1000);
-            $("#Mediabox").bind("click", MediaBoxClick);
-            $("#flyout").bind("click", flyoutClick);
+            $("#MediaboxControls").bind("click", MediaBoxClick);
+            $("#MediaBoxContainer").bind("click", flyoutClick);
         });
         var Discovered = false;
         var discoTimeout = 1000;
 
         function MinimizeMediabox() {
-            var mb = $("#Mediabox");
+            var mb = $("#MediaboxControls");
             mb.toggle('slow');
             return false;
         }
@@ -101,13 +105,13 @@ Released   : 20100727
             });
         }
         function flyoutClick() {
-            $("#Mediabox").toggle('fade');
+            $("#MediaboxControls").toggle('fade');
             return false;
         }
         function LightUpMediaSuccess(data) {
-            $("#flyout-menu-item").html(data.FriendlyName);
-            $("#flyout").show('fade');
-            var mb = $("#Mediabox");
+            $("#MediaBoxLink").html(data.FriendlyName + " >>");
+            $("#MediaBoxContainer").show('fade');
+            var mb = $("#MediaboxControls");
             mb.html(data.HTML).hide();
         }
 
@@ -121,11 +125,6 @@ Released   : 20100727
 
 
     </script>
-    <div id="Mediabox"  class="flyout flyout-tab"></div>
-    <ul id="flyout" class="flyout current_page_item">
-        <li class="active"><a href="#Mediabox" id="flyout-menu-item" class="flyout-menu-item">Media</a></li>
-    </ul>
-
 
 </body>
 </html>

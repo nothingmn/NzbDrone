@@ -1,6 +1,5 @@
 ﻿.Mediabox 
 {
-	background:black;
 }
 .Play 
 {
@@ -18,7 +17,7 @@
 	cursor:pointer;
 	padding:5px;
 }
-.flyout-menu-item 
+#MediaBoxLink
 {
 	display:none;
 	color:white;
@@ -31,26 +30,25 @@
 	font-family: ‘Trebuchet MS’, Helvetica, sans-serif;
 	font-size:12px;
 	font-weight:normal;
-	text-shadow: 0px 0px 1px #333;
+	background: #065EFE;	
+	cursor:pointer;
 
 }
-.flyout 
+#MediaboxContainer 
 {
+	cursor:pointer;
 	display:none;
 	position:relative;
 	text-align:right;
-	list-style:none;		
+	list-style:none;	
 }
-.flyout-tab
+#MediaboxControls
 {	
 	display:none;
-	display:inline;	
-	background-color:White;
-	border-bottom-style:dashed;
-	border-bottom-width:thin;
-	position:relative;
+	border-width:thin;
+	border-color:Black;
+	color:white;
 	text-align:right;
-	width:200px;
-	
-	
+	width:200px;	
+	background: #065EFE;
 }
